@@ -21,6 +21,7 @@ css = cssBase.read()
 cssBase.close()
 
 os.mkdir("../dist/flags/country", 0o777)
+os.mkdir("../dist/flags/special", 0o777)
 
 print("STEP 2A - Generate countries ans regional")
 
@@ -39,6 +40,16 @@ for filename in glob.iglob("../src/country/" + '**/*.svg', recursive=True):
            os.mkdir("../dist/flags/country/" + country)
         shutil.copy(filename, "../dist/flags/country/" + country)
         css = css + "\n\n.flags-country-" + country + "-" + subcountry + " {\n    background-image: url(flags/country/" + country + "/" + subcountry + ".svg);\n}"
+
+print("STEP 2B - Generate special")
+
+css = css + "\n\n/* Special flags */"
+
+for filename in glob.iglob("../src/special/" + '**/*.svg', recursive=True):
+     print(filename)
+     shutil.copy(filename, "../dist/flags/special/")
+     code = filename.replace("../src/special/", "").replace(".svg", "")
+     css = css + "\n\n.flags-special-" + code + " {\n    background-image: url(flags/special/" + code + ".svg);\n}"
 
 print("STEP 3 - Write CSS")
 cssFinal = open("../dist/flags.css", "w")
