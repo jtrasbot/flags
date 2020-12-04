@@ -29,11 +29,11 @@ css = css + "\n\n/* Countries and regional flags */"
 
 for filename in glob.iglob("../src/country/" + '**/*.svg', recursive=True):
      print(filename)
-     if "/" not in filename.replace("../src/country/", ""):
+     if "/" not in filename.replace("../src/country/", ""): # If just a country ex : "fr" for France
           shutil.copy(filename, "../dist/flags/country/")
           countryCode = filename.replace("../src/country/", "").replace(".svg", "")
           css = css + "\n\n.flags-country-" + countryCode + " {\n    background-image: url(flags/country/" + countryCode + ".svg);\n}"
-     else:
+     else: # If a country and subcode ex : "fr/bre" for Bretagne in France
         country, subcountry = filename.replace("../src/country/", "").split("/")
         subcountry = subcountry.replace(".svg", "")
         if not os.path.isdir("../dist/flags/country/" + country):
