@@ -9,11 +9,12 @@ import glob
 import shutil
 import rcssmin
 
-print("STEP 1 - Clear build directory")
+print("STEP 1 - Make build directory")
 
-files = glob.glob('../dist/flags/*')
-for f in files:
-    shutil.rmtree(f)
+os.mkdir("../dist", 0o777)
+os.mkdir("../dist/flags", 0o777)
+os.mkdir("../dist/flags/country", 0o777)
+os.mkdir("../dist/flags/special", 0o777)
 
 print("STEP 2 - Generate main CSS and copy svg to build directory")
 
@@ -21,10 +22,7 @@ cssBase = open("../src/base.css", "r")
 css = cssBase.read()
 cssBase.close()
 
-os.mkdir("../dist/flags/country", 0o777)
-os.mkdir("../dist/flags/special", 0o777)
-
-print("STEP 2A - Generate countries ans regional")
+print("STEP 2A - Generate countries and regional")
 
 css = css + "\n\n/* Countries and regional flags */"
 
