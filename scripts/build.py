@@ -7,6 +7,7 @@ __author__ = "Jeremy TRASBOT <contact@jeremy-trasbot.fr"
 import os
 import glob
 import shutil
+import rcssmin
 
 print("STEP 1 - Clear build directory")
 
@@ -55,3 +56,8 @@ print("STEP 3 - Write CSS")
 cssFinal = open("../dist/flags.css", "w")
 cssFinal.write(css)
 cssFinal.close()
+
+print("STEP 4 - Minified CSS")
+cssMini = open("../dist/flags.min.css", "w")
+cssMini.write(rcssmin.cssmin(css, keep_bang_comments=True))
+cssMini.close()

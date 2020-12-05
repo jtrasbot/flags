@@ -1,4 +1,8 @@
-﻿.flags {
+﻿/*!
+https://github.com/jtrasbot/flags
+*/
+
+.flags {
     background-size: contain;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -11,7 +15,3 @@
 .flags:before {
     content: "\00a0";
 }
-
-/*.flags-country-fr {
-    background-image: url(flags/country/fr.svg);
-}*/
